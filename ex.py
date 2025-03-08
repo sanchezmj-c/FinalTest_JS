@@ -47,13 +47,20 @@ st.plotly_chart(fig_admissions)
 # Retention and Satisfaction Trends
 st.subheader("Retention & Satisfaction by Department")
 
-departments = ["Engineering", "Business", "Arts", "Science"]
-retention_satisfaction_df = pd.DataFrame()
+department_mapping = {
+    "Engineering Enrolled": "Engineering",
+    "Business Enrolled": "Business",
+    "Arts Enrolled": "Arts",
+    "Science Enrolled": "Science"
+}
 
-for dept in departments:
-    temp_df = UN_data[["Year", "Retention Rate (%)", "Student Satisfaction (%)"]].copy()
+retention_satisfaction_df = []
+for column, dept in department_mapping.items():
+    temp_df = df[["Year", "Retention Rate (%)", "Student Satisfaction (%)"]].copy()
     temp_df["Department"] = dept
-    retention_satisfaction_df = pd.concat([retention_satisfaction_df, temp_df])
+    retention_satisfaction_df.append(temp_df)
+
+retention_satisfaction_df = pd.concat(retention_satisfaction_df)
 
 fig_retention_dept = px.line(retention_satisfaction_df, x="Year", y="Retention Rate (%)", color="Department", markers=True,
                              title="Retention Rate by Department")
