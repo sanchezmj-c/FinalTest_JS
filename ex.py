@@ -45,14 +45,19 @@ fig_admissions = px.line(UN_data, x="Year", y=["Applications", "Admitted", "Enro
 st.plotly_chart(fig_admissions)
 
 # Retention and Satisfaction Trends
-st.subheader("Retention & Satisfaction Trends")
-fig_retention = px.line(UN_data, x="Year", y="Retention Rate (%)", markers=True, 
-                        title="Retention Rate Over Years", color_discrete_sequence=["#AB63FA"])
-st.plotly_chart(fig_retention)
+st.subheader("Retention & Satisfaction by Department")
+retention_satisfaction_df = UN_data.melt(id_vars=["Year"], value_vars=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
+                                     var_name="Department", value_name="Enrolled")
+retention_satisfaction_df["Retention Rate (%)"] = UN_data["Retention Rate (%)"]
+retention_satisfaction_df["Student Satisfaction (%)"] = UN_data["Student Satisfaction (%)"]
 
-fig_satisfaction = px.line(UN_data, x="Year", y="Student Satisfaction (%)", markers=True, 
-                           title="Student Satisfaction Over Years", color_discrete_sequence=["#FFA15A"])
-st.plotly_chart(fig_satisfaction)
+fig_retention_dept = px.line(retention_satisfaction_df, x="Year", y="Retention Rate (%)", color="Department", markers=True,
+                             title="Retention Rate by Department")
+st.plotly_chart(fig_retention_dept, use_container_width=True)
+
+fig_satisfaction_dept = px.line(retention_satisfaction_df, x="Year", y="Student Satisfaction (%)", color="Department", markers=True,
+                                title="Student Satisfaction by Department")
+st.plotly_chart(fig_satisfaction_dept, use_container_width=True)
 
 # Enrollment by Department
 st.subheader("Enrollment Breakdown by Department")
@@ -85,9 +90,10 @@ fig_corr.update_layout(title="Feature Correlation Heatmap",
                        width=800, height=700)
 st.plotly_chart(fig_corr)
 
-st.header("Key Findings & Insights")
-st.markdown("✅ **Admissions**: Growing applications and stable admission rates. Optimize recruitment strategies.")
-st.markdown("✅ **Retention**: Steady at ~85-87%. Improve student support services.")
-st.markdown("✅ **Satisfaction**: Improving but varies by department. Address low-performing areas.")
-st.markdown("✅ **Enrollment**: Engineering dominates. Expand interdisciplinary programs to balance.")
-st.markdown("✅ **Spring vs Fall**: Fall has slightly higher enrollments. Adjust resource allocation accordingly.")
+st.header("Key Takeaways & Insights")
+st.markdown("📈 **Admissions are Growing!** More students are applying every year, showing a strong reputation. To keep up, enhancing application processing and outreach could be beneficial.")
+st.markdown("📊 **Retention is Steady** (85-87%). While this is great, there's always room to keep students engaged and supported through mentorship and academic assistance.")
+st.markdown("😊 **Student Satisfaction is Improving!** A positive trend, but some departments may need extra attention to ensure all students have a great experience.")
+st.markdown("🏫 **Engineering Leads in Enrollment.** Other fields like Arts and Science could benefit from additional promotions, scholarships, or interdisciplinary programs.")
+st.markdown("🍂 **Fall vs Spring Admissions are Close.** Fall sees slightly higher enrollments, so optimizing resources accordingly can ensure a smooth student experience year-round.")
+
