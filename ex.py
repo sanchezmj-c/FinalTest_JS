@@ -68,6 +68,8 @@ fig_satisfaction_dept = px.line(retention_satisfaction_df, x="Year", y="Student 
                                 title="Student Satisfaction by Department")
 st.plotly_chart(fig_satisfaction_dept, use_container_width=True)
 
+st.write("Satisfaction and Retention is equal across all departments")
+
 # Enrollment by Department
 st.subheader("Enrollment Breakdown by Department")
 fig_department = px.bar(UN_data, x="Year", y=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"], 
@@ -100,7 +102,7 @@ fig_corr.update_layout(title="Feature Correlation Heatmap",
 st.plotly_chart(fig_corr)
 
 st.header("Key Takeaways & Insights")
-st.markdown("📈 **Admissions are Growing!** More students are applying every year, showing a strong reputation. To keep up, enhancing application processing and outreach could be beneficial.")
+st.markdown("📈 **Admissions are Growing,** More students are applying every year, showing a strong reputation. An enhance in application processing and outreach could be beneficial.")
 st.markdown("📊 **Retention is Steady** (85-87%). While this is great, there's always room to keep students engaged and supported through mentorship and academic assistance.")
 st.markdown("😊 **Student Satisfaction is Improving!** A positive trend, but some departments may need extra attention to ensure all students have a great experience.")
 st.markdown("🏫 **Engineering Leads in Enrollment.** Other fields like Arts and Science could benefit from additional promotions, scholarships, or interdisciplinary programs.")
