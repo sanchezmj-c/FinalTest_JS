@@ -1,3 +1,9 @@
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import streamlit as st
+import numpy as np
+
 UN_data = pd.read_csv("university_student_dashboard_data.csv")
 
 st.title("University Admissions & Student Satisfaction EDA")
