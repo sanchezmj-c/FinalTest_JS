@@ -45,8 +45,6 @@ fig_admissions = px.line(UN_data, x="Year", y=["Applications", "Admitted", "Enro
 st.plotly_chart(fig_admissions)
 
 # Retention and Satisfaction Trends
-st.subheader("Retention & Satisfaction by Department")
-
 department_mapping = {
     "Engineering Enrolled": "Engineering",
     "Business Enrolled": "Business",
@@ -57,7 +55,7 @@ department_mapping = {
 retention_satisfaction_df = []
 for column, dept in department_mapping.items():
     temp_df = UN_data[["Year", "Retention Rate (%)", "Student Satisfaction (%)"]].copy()
-    temp_df["Department"] = dept
+    temp_df["Department"] = dept  # Assign department name
     retention_satisfaction_df.append(temp_df)
 
 retention_satisfaction_df = pd.concat(retention_satisfaction_df)
