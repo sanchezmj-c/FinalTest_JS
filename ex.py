@@ -56,7 +56,7 @@ department_mapping = {
 
 retention_satisfaction_df = []
 for column, dept in department_mapping.items():
-    temp_df = df[["Year", "Retention Rate (%)", "Student Satisfaction (%)"]].copy()
+    temp_df = UN_data[["Year", "Retention Rate (%)", "Student Satisfaction (%)"]].copy()
     temp_df["Department"] = dept
     retention_satisfaction_df.append(temp_df)
 
