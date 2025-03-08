@@ -84,3 +84,10 @@ fig_corr.update_layout(title="Feature Correlation Heatmap",
                        yaxis_title="Features",
                        width=800, height=700)
 st.plotly_chart(fig_corr)
+
+st.header("Key Findings & Insights")
+st.markdown("✅ **Admissions**: Growing applications and stable admission rates. Optimize recruitment strategies.")
+st.markdown("✅ **Retention**: Steady at ~85-87%. Improve student support services.")
+st.markdown("✅ **Satisfaction**: Improving but varies by department. Address low-performing areas.")
+st.markdown("✅ **Enrollment**: Engineering dominates. Expand interdisciplinary programs to balance.")
+st.markdown("✅ **Spring vs Fall**: Fall has slightly higher enrollments. Adjust resource allocation accordingly.")
