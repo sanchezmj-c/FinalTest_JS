@@ -8,12 +8,23 @@ UN_data = pd.read_csv("university_student_dashboard_data.csv")
 
 st.title("University Admissions & Student Satisfaction EDA")
 
+st.header("Key Performance Indicators (KPIs)")
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Applications", UN_data["Applications"].sum())
+col2.metric("Total Admissions", UN_data["Admitted"].sum())
+col3.metric("Total Enrollments", UN_data["Enrolled"].sum())
+
+col4, col5 = st.columns(2)
+col4.metric("Average Retention Rate (%)", round(UN_data["Retention Rate (%)"].mean(), 2))
+col5.metric("Average Student Satisfaction (%)", round(UN_data["Student Satisfaction (%)"].mean(), 2))
+
 # Display dataset overview
 st.subheader("Dataset Overview")
 st.write(UN_data.head())
 
 st.subheader("Summary Statistics")
 st.write(UN_data.describe())
+st.write("Given data show a reprentation of university key insights, with this, one could conclude that there is a good retention rate of students and good satisfaction overall.")
 
 st.subheader("Admission and enrollment percentages")
 
@@ -24,6 +35,8 @@ df_sorted["Enrollment Rate (%)"] = (df_sorted["Enrolled"] / df_sorted["Admitted"
 df_sorted["Overall Enrollment Rate (%)"] = (df_sorted["Enrolled"] / df_sorted["Applications"]) * 100
 
 st.write(df_sorted[["Year", "Applications", "Admitted", "Admission Rate (%)", "Enrolled", "Enrollment Rate (%)", "Overall Enrollment Rate (%)"]])
+
+st.write("In all years, for all the applicants, there is an approximately 23% of people that enroll, approx 40% of admitted people enroll")
 
 # Admissions Trends
 st.subheader("Admissions Trends Over Time")
