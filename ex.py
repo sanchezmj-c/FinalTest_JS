@@ -101,6 +101,8 @@ fig_corr.update_layout(title="Feature Correlation Heatmap",
                        width=800, height=700)
 st.plotly_chart(fig_corr)
 
+st.write("There is a strong correlation between most columns/variables")
+
 st.header("Key Takeaways & Insights")
 st.markdown("📈 **Admissions are Growing,** More students are applying every year, showing a strong reputation. An enhance in application processing and outreach could be beneficial.")
 st.markdown("📊 **Retention is Steady** (85-87%). While this is great, there's always room to keep students engaged and supported through mentorship and academic assistance.")
